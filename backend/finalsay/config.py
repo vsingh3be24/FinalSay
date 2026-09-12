@@ -41,6 +41,9 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expires_minutes: int = 60 * 24
 
+    # Comma-separated browser origins allowed to call the API ("*" allows all).
+    cors_origins: str = "*"
+
     # Polygon Amoy on-chain anchoring (only used when anchor == "polygon").
     polygon_rpc_url: str | None = None
     polygon_private_key: str | None = None

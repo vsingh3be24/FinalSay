@@ -1,14 +1,16 @@
-# FinalSay PostgreSQL service (opt-in, design.md section 8).
+# FinalSay PostgreSQL service for LOCAL DEVELOPMENT (opt-in, design.md section 8).
 #
-# The zero-setup demo defaults to SQLite and needs none of this. This file
-# provisions the PostgreSQL backend named in design.md section 8 so the
-# documented Postgres support is reproducible.
+# This only starts Postgres, port-mapped to the host, for a backend you run
+# outside Docker. The full deployable stack (app + seed + db) lives in
+# compose.yaml. Pass -f explicitly: a bare `docker compose` command picks
+# compose.yaml, not this file.
 #
-#   docker compose up -d db          # start Postgres in the background
+# The zero-setup demo defaults to SQLite and needs none of this.
+#
+#   docker compose -f compose.dev.yaml up -d db      # start Postgres
 #   export FINALSAY_DATABASE_URL=postgresql+psycopg2://finalsay:finalsay@127.0.0.1:5432/finalsay
-#   ( cd backend && .venv/bin/python -c 'from finalsay.db import Base, engine; Base.metadata.create_all(bind=engine)' )
 #   ( cd backend && .venv/bin/python -m finalsay.seed.seed )
-#   docker compose down              # tear down
+#   docker compose -f compose.dev.yaml down          # tear down
 #
 # Credentials/db/port match the documented FINALSAY_DATABASE_URL:
 #   postgresql+psycopg2://finalsay:finalsay@127.0.0.1:5432/finalsay

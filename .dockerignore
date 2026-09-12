@@ -1,0 +1,14 @@
+.git
+.venv
+backend/.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+*.db
+apps/web/node_modules
+apps/web/dist
+apps/web/dev-dist
+.hf-cache
+docs
+.agents
+.kiro
