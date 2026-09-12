@@ -14,9 +14,6 @@ from finalsay.api import issuer as issuer_api
 from finalsay.api import notices as notices_api
 from finalsay.api import provenance as provenance_api
 from finalsay.api import reviewer as reviewer_api
-from finalsay.api import workspace
-from finalsay.api import recovery
-from finalsay.operations import Telemetry, router as operations_router
 from finalsay.db import Base, engine
 from finalsay.logging_conf import configure_logging
 from finalsay.schemas import HealthResponse
@@ -28,7 +25,6 @@ from finalsay import models  # noqa: F401
 def create_app() -> FastAPI:
     logger = configure_logging()
     app = FastAPI(title="FinalSay", version="0.2.0")
-    app.state.telemetry = Telemetry()
 
     # Enable CORS for split deployment (e.g. GitHub Pages frontend talking to EC2 backend)
     app.add_middleware(
